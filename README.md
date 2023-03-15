@@ -14,7 +14,7 @@ O funcionário pode:
 -Alterar status dos pedidos dos clientes
 -Alterar status de abertura da lanchonete
 
-##Funcionalidades futuras
+## Funcionalidades futuras
 
 Cliente:
 -Cancelamento de pedidos
