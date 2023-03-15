@@ -15,6 +15,7 @@ O funcionário pode:
 -Alterar status de abertura da lanchonete
 
 ##Funcionalidades futuras
+
 Cliente:
 -Cancelamento de pedidos
 
