@@ -2,7 +2,8 @@
 A proposta desta aplicação é uma interface web para realização de pedidos de uma lanchonete e gerenciamento destes pedidos
 
 ## Funcionalidades
-O cliente pode:
+# O cliente pode:
+
 -Se cadastrar.
 
 -Logar.
@@ -14,7 +15,7 @@ O cliente pode:
 -Alterar dados cadastrais.
 
 
-O funcionário pode:
+# O funcionário pode:
 -Logar.
 
 -Alterar status dos pedidos dos clientes.
@@ -24,7 +25,7 @@ O funcionário pode:
 -Alterar status de abertura da lanchonete.
 
 
-O funcionario com permissões de administrador pode:
+# O funcionario com permissões de administrador pode:
 -Todas as funções do funcionario comum.
 
 -Cadastrar novos funcionarios comuns.
@@ -40,13 +41,13 @@ O funcionario com permissões de administrador pode:
 
 ## Funcionalidades futuras
 
-Cliente:
+# Cliente:
 
 -Cancelamento de pedidos.
 
 -Verificar todos os pedidos proprios concluidos.
 
-Funcionario:
+# Funcionario:
 
 -Alterar cardapio.
 
