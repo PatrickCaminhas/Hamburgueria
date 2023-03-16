@@ -2,7 +2,7 @@
 A proposta desta aplicação é uma interface web para realização de pedidos de uma lanchonete e gerenciamento destes pedidos
 
 ## Funcionalidades
-# O cliente pode:
+### O cliente pode:
 
 -Se cadastrar.
 
