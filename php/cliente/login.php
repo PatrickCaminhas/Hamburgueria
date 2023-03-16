@@ -9,7 +9,7 @@ if (isset($_POST['login'])) {
 // Capturar os dados do formulário
 $username = mysqli_real_escape_string($conn, $_POST['username']);
 $password = mysqli_real_escape_string($conn, $_POST['senha']);
-
+$password =$password = md5($password);
 //Verificar se o usuário existe no banco de dados
 $query = "SELECT * FROM usuario WHERE email = '$username' and senha = '$password'";
 
@@ -28,6 +28,7 @@ header('location: profile.php');
 
 
 echo  "<script>alert('Email ou senha incorretos!');</script>";
+
 }
 }
 

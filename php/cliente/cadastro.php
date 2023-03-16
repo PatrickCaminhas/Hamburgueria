@@ -51,7 +51,7 @@ if (isset($_POST['cadastrar'])) {
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <h3>Dados Pessoais</h3>
         Nome: <input type="text" name="nome" /><br />
-        Email: <input type="text" name="email" /><br />
+        Email: <input type="email" name="email" /><br />
         Senha: <input type="password" name="senha" /><br />
         <h3>Endereço</h3>
         Rua: <input type="text" name="rua" /><br />

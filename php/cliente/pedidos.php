@@ -94,6 +94,7 @@ if (isset($_POST['cadastrar'])) {
 
         if (mysqli_query($con, $sql)) {
             echo "Pedido realizado com sucesso!";
+            header('location: pedidos.php');
             
         } else {
             echo  "<script>alert('Erro ao realizar pedido!');</script>";
@@ -112,6 +113,7 @@ if (isset($_POST['cadastrar'])) {
 </head>
 
 <body>
+    <a href="profile.php">Voltar</a>
     <h1>Realização de pedidos</h1>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         

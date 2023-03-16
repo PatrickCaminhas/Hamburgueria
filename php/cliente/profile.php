@@ -30,10 +30,14 @@ $user = mysqli_fetch_assoc($result);
 <h1>Perfil</h1>
 
 <div>
-<p>Nome: <?php echo $user['nome']; ?></p>
-<p>E-mail: <?php echo $user['email']; ?></p>
-</div>
-
+<p>Bem vindo(a),<?php echo $user['nome']; ?></p>
+</div>  
+<a href="pedidos.php">Realizar pedidos</a>
+<br>
+<a href="pedidos_lista.php">Consultar pedidos abertos</a>
+<br>
+<a href="alterar_dados.php">Alterar dados cadastrais</a>
+<br>
 <a href="logout.php">Sair</a>
 
 </body>
