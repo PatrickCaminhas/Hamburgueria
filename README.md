@@ -15,7 +15,7 @@ A proposta desta aplicação é uma interface web para realização de pedidos d
 -Alterar dados cadastrais.
 
 
-# O funcionário pode:
+### O funcionário pode:
 -Logar.
 
 -Alterar status dos pedidos dos clientes.
@@ -25,7 +25,7 @@ A proposta desta aplicação é uma interface web para realização de pedidos d
 -Alterar status de abertura da lanchonete.
 
 
-# O funcionario com permissões de administrador pode:
+### O funcionario com permissões de administrador pode:
 -Todas as funções do funcionario comum.
 
 -Cadastrar novos funcionarios comuns.
@@ -41,13 +41,13 @@ A proposta desta aplicação é uma interface web para realização de pedidos d
 
 ## Funcionalidades futuras
 
-# Cliente:
+### Cliente:
 
 -Cancelamento de pedidos.
 
 -Verificar todos os pedidos proprios concluidos.
 
-# Funcionario:
+### Funcionario:
 
 -Alterar cardapio.
 
