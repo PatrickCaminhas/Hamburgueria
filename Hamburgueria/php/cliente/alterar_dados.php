@@ -8,7 +8,7 @@ session_start();
 
 // Verificar se o usuário está logado
 if (!isset($_SESSION['username'])) {
-    header('location: login.php');
+    header('location: index.php');
     exit;
 }
 
@@ -28,9 +28,7 @@ if (isset($_POST['alterarDadosPessoais'])) {
     $email = $_POST['email'];
     $queryVerifica = "SELECT * FROM usuario WHERE email = '$email'";
     $resultVerifica = mysqli_query($conn, $queryVerifica);
-    if (mysqli_num_rows($resultVerifica) == 1) {
-        echo  "<script>alert('Email já cadastrado!');</script>";
-    } else{
+
     // Alterando os dados do usuário
     $sql = "UPDATE usuario SET nome='$nome', email='$email' WHERE id=$id";
     $resultado = mysqli_query($conn, $sql);
@@ -43,7 +41,7 @@ if (isset($_POST['alterarDadosPessoais'])) {
         echo "Erro ao alterar os dados!";
     }
     }
-}
+
 
 if (isset($_POST['alterarSenha'])) {
     $senha = $_POST['senha'];
@@ -76,11 +74,13 @@ if(isset($_POST['alterarEndereco'])){
     $resultado = mysqli_query($conn, $sql);
     if ($resultado) {
         
-        echo "O endereço foi alterado com sucesso!";
+        echo  "<script>alert('Endereço atualizado com sucesso!');</script>";
+        
     } else {
         echo "Erro ao alterar o endereço!";
         
     }
+    
 }
 
 
@@ -92,14 +92,16 @@ if(isset($_POST['alterarEndereco'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>iLanches - Alterar dados</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="shortcut icon" href="../../images/ms-icon-310x310.png" type="image/x-icon" />
+
 </head>
 <body>
 
 <div class="titulo mx-auto">
-        <img src="../../css/titulo.png" alt="iLanches Titulo" >
+        <img src="../../images/titulo.png" alt="iLanches Titulo" >
     </div>
     <div><nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
@@ -127,6 +129,12 @@ if(isset($_POST['alterarEndereco'])){
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pedidos.php">Novo pedido</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cancelamento_pedidos.php">Cancelar pedidos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pedidos_lista.php">Pedidos fechados</a>
           </li>
           <li class="nav-item">
             <a class="nav-link active fw-bolder" aria-current="page" href="alterar_dados.php">Alterar dados cadastrais</a>

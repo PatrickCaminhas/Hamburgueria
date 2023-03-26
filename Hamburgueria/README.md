@@ -1,5 +1,5 @@
 # **Burguer Shop**
-A proposta desta aplicação é uma interface WEB para realização de pedidos de uma lanchonete e gerenciamento destes pedidos
+A proposta desta aplicação é uma interface web para realização de pedidos de uma lanchonete e gerenciamento destes pedidos
 
 ## Funcionalidades
 ### O cliente pode:
@@ -41,7 +41,15 @@ A proposta desta aplicação é uma interface WEB para realização de pedidos d
 
 ## Funcionalidades futuras
 
-- Pagina de confirmação de pedidos
-- Ordenação de data e hora para o formato dd/mm/AAAA HH:MM:SS
-- Configuração de abertura e fechamento de lanchonete para proibição e liberação de criação de pedidos
-- CRUD completo do cardapio
+### Cliente:
+
+-Cancelamento de pedidos.
+
+-Verificar todos os pedidos proprios concluidos.
+
+### Funcionario:
+
+-Alterar cardapio.
+
+-Verificar dados de todos os usuarios.
+

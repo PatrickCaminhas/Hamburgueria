@@ -10,5 +10,5 @@ session_unset();
 session_destroy();
 
 // Redireciona para a página de login
-header("location: login_funcionario.php");
+header("location: index.php");
 ?>

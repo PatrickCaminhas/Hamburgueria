@@ -26,24 +26,24 @@ $user = mysqli_fetch_assoc($result);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body class="bg-dark">
-
+    <title>Funcionario iLanches - Pedidos abertos</title>
+    
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="shortcut icon" href="../../images/ms-icon-310x310.png" type="image/x-icon" />
 </head>
 
-<body>
+
+
+<body class="bg-dark">
 
     <div class="titulo mx-auto">
-        <img src="../../css/titulo.png" alt="iLanches Titulo" >
+        <img src="../../images/titulo.png" alt="iLanches Titulo" >
     </div>
     <div>
         <nav class="navbar navbar-dark bg-dark">
@@ -114,9 +114,9 @@ $user = mysqli_fetch_assoc($result);
     }
 
     // cria a query
-    $sql = "SELECT * FROM pedidos INNER JOIN usuario ON usuario.id = pedidos.user_id WHERE NOT status = 'Concluido'";
+    $sql = "SELECT * FROM pedidos INNER JOIN usuario ON usuario.id = pedidos.user_id WHERE NOT status = 'Concluido' AND NOT status = 'Cancelado'";
     
-    $sql2 = "SELECT pedidoID FROM pedidos WHERE NOT status = 'Concluido'";
+    $sql2 = "SELECT pedidoID FROM pedidos WHERE NOT status = 'Concluido' AND NOT status = 'Cancelado'" ;
     $resultado2 = mysqli_query($conn, $sql2);
     $pedidos = mysqli_fetch_all($resultado2);
     // executa a query
@@ -140,6 +140,7 @@ $user = mysqli_fetch_assoc($result);
         echo "<th class='text-danger'>Status</th>";
         echo "<th class='text-danger'>Ultima atualização</th>";
         echo "<th class='text-danger'>Total</th>";
+        echo "<th class='text-danger'>Endereco</th>";
         echo "<th class='text-danger'>Concluir</th>";
         echo "</tr>";
 
@@ -156,6 +157,7 @@ $user = mysqli_fetch_assoc($result);
             <td class="text-danger"><?php echo $row["status"]; ?> </td>
             <td class="text-danger"><?php echo $row["ultima_atualizacao"]; ?> </td>
             <td class="text-danger"><?php echo "R$" . $row["preco"] . ",00" ?> </td>
+            <td class="text-danger"><?php echo $row["endereco"]; ?> </td>
             <td>      <select name="<?php echo $pedidos[$i][0]; ?>status" id="<?php echo $pedidos[$i][0]; ?>status"  placeholder="" class="form-select text-danger bg-dark border-danger fw-semibold">
                                 <option value='<?php echo $row["status"]; ?>' selected hidden><?php echo $row["status"]; ?></option>
                                 <option value='Aceito'>Aceito</option>
@@ -196,10 +198,16 @@ $user = mysqli_fetch_assoc($result);
             }
         }
     }
-    
-    ?>
-  
-       <input type="submit" name="alterarStatus"  class="mt-2 btn btn-lg btn-danger" value="Alterar">
+    if(mysqli_num_rows($resultado) > 0){
+        ?>
+      
+           <input type="submit" name="alterarStatus"  class="mt-2 btn btn-lg btn-danger" value="Alterar">
+        <?php
+        }
+        else{
+            echo "<center><h4 class='text-danger' > Não há pedidos para serem modificados o status </h4></center>";
+        }
+        ?>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"

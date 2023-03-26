@@ -39,8 +39,8 @@ $linhas = mysqli_fetch_row($result);
 $quantity = "SELECT nome FROM cardapio";
 $result = mysqli_query($con, $quantity);
 $nomes = mysqli_fetch_all($result);
-
-
+$pedido;
+$total_preco;
 
 
 
@@ -57,35 +57,45 @@ if (isset($_POST['cadastrar'])) {
     
    {
 
-    $total_preco;
+    
     for($i = 0; $i < $linhas[0]; $i++){
         if(${$nomes[$i][0]} > 0){
             $lanche = $nomes[$i][0];
             $qtd= ${$nomes[$i][0]};
 
             $query = "SELECT preco FROM cardapio WHERE nome = '$lanche'";
-            echo $query;
+            
             $result = mysqli_query($con, $query);
             $precos = mysqli_fetch_all($result);
-            echo $precos[0][0];
+            
             $valor = (int)$precos[0][0]*$qtd;
             $total_preco = $total_preco + $valor;
         }
     }
 
     
-        echo $total_preco;
-        $pedido;
+      
+        
+        
         for($i = 0; $i < $linhas[0]; $i++){
             if(${$nomes[$i][0]} > 0){
                 $pedido =$pedido.$nomes[$i][0].": ".${$nomes[$i][0]}." | ";
             }
         }
-
+        echo $pedido;
+        if($pedido == ""){
+            echo  "<script>alert('Nenhum lanche selecionado!');
+            location.href='pedidos.php';</script>";
+            
+            exit();
+            
+        }
+       
       
         
         $user_id = $user['id'];
-        $sql = "INSERT INTO `pedidos`(user_id, lanches, criacao_pedido, ultima_atualizacao, status, preco) VALUES ('$user_id', '$pedido', NOW(), NOW(),'Pedido recebido', '$total_preco')";
+        $endereco= $user['rua'].", ".$user['numero']." ".$user['complemento']." - ".$user['bairro'];
+        $sql = "INSERT INTO `pedidos`(user_id, lanches, criacao_pedido, ultima_atualizacao, status, preco, endereco) VALUES ('$user_id', '$pedido', NOW(), NOW(),'Pedido recebido', '$total_preco', '$endereco')";
        
 
 
@@ -93,12 +103,14 @@ if (isset($_POST['cadastrar'])) {
 
 
         if (mysqli_query($con, $sql)) {
-            echo "Pedido realizado com sucesso!";
-            header('location: pedidos.php');
+          echo  "<script>alert('Pedido realizado com sucesso!');
+          location.href='profile.php';</script>";
+
+           
             
         } else {
-            echo  "<script>alert('Erro ao realizar pedido!');</script>";
-            header('location: pedidos.php');
+          echo  "<script>alert('Erro ao realizar pedido!');
+          location.href='pedidos.php';</script>";
         }
     }
    
@@ -109,14 +121,20 @@ if (isset($_POST['cadastrar'])) {
 <html>
 
 <head>
-    <title>Realizar Pedidos</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iLanches - Novo Pedido</title>
+    <link rel="shortcut icon" href="../../images/ms-icon-310x310.png" type="image/x-icon" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 
 <div class="titulo mx-auto">
-        <img src="../../css/titulo.png" alt="iLanches Titulo" >
+        <img src="../../images/titulo.png" alt="iLanches Titulo" >
     </div>
     <div><nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
@@ -144,6 +162,12 @@ if (isset($_POST['cadastrar'])) {
           </li>
           <li class="nav-item">
             <a class="nav-link active fw-bolder" aria-current="page" href="pedidos.php">Novo pedido</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="cancelamento_pedidos.php">Cancelar pedidos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pedidos_lista.php">Pedidos fechados</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="alterar_dados.php">Alterar dados cadastrais</a>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionario iLanches - Pedidos fechados</title>
+    <link rel="shortcut icon" href="../../images/ms-icon-310x310.png" type="image/x-icon" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
 </head>
@@ -43,7 +45,7 @@ if (!$conn) {
 }
 ?>
     <div class="titulo mx-auto">
-        <img src="../../css/titulo.png" alt="iLanches Titulo" >
+        <img src="../../images/titulo.png" alt="iLanches Titulo" >
     </div>
     <div>
         <nav class="navbar navbar-dark bg-dark">
@@ -68,7 +70,7 @@ if (!$conn) {
                     </div>
                     <div class="offcanvas-body">
                         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
-                            <?php echo "CPF: ".$user['cpf']; ?>
+                         
                         </h5>
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <li class="nav-item">
@@ -105,7 +107,7 @@ if (!$conn) {
 
 
 // cria a query
-$sql = "SELECT *, email, nome FROM pedidos INNER JOIN usuario ON usuario.id = pedidos.user_id WHERE status = 'Concluido'";
+$sql = "SELECT *, email, nome FROM pedidos INNER JOIN usuario ON usuario.id = pedidos.user_id WHERE status = 'Concluido' OR status = 'Cancelado' ORDER BY criacao_pedido DESC";
 
 // executa a query
 $resultado = mysqli_query($conn, $sql);
@@ -121,6 +123,7 @@ if (mysqli_num_rows($resultado) > 0) {
   echo "<th class='text-danger'>Status</th>";
   echo "<th class='text-danger'>Ultima atualização</th>";
   echo "<th class='text-danger'>Total</th>";
+  echo "<th class='text-danger'>Endereco</th>";
   echo "</tr>";
 
   // output data of each row
@@ -134,11 +137,12 @@ if (mysqli_num_rows($resultado) > 0) {
     echo "<td class='text-danger'>" . $row["status"]. "</td>";
     echo "<td class='text-danger'>" . $row["ultima_atualizacao"]. "</td>";
     echo "<td class='text-danger'>" ."R$". $row["preco"].",00". "</td>";
+    echo "<td class='text-danger'>" . $row["endereco"]. "</td>";
     echo "</tr>";
   }
   echo "</table>";
 } else {
-  echo "Nenhum resultado encontrado.";
+    echo "<center><h5 class='text-danger' > Não há pedidos fechados! </h5></center>";
 }
 
 ?>

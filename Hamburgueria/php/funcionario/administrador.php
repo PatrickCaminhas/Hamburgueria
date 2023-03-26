@@ -68,10 +68,12 @@ if(isset ($_POST['rebaixar'])){
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Funcionario iLanches - Administrador</title>
+    <link rel="shortcut icon" href="../../images/ms-icon-310x310.png" type="image/x-icon" />
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/style.css">
@@ -80,7 +82,7 @@ if(isset ($_POST['rebaixar'])){
 <body>
 
     <div  class="titulo mx-auto">
-        <img src="../../css/titulo.png" alt="iLanches Titulo">
+        <img src="../../images/titulo.png" alt="iLanches Titulo">
     </div>
     <div>
         <nav class="navbar navbar-dark bg-dark">
@@ -160,7 +162,7 @@ if (mysqli_num_rows($result) > 0) {
     echo '</select>';
     echo ' <input type="submit" name="demitir" value="Demitir" class="mt-2 btn btn-lg btn-danger">';
 } else {
-    echo 'Nenhum resultado encontrado.';
+    echo "<center><h5 class='text-danger' > Não há funcionario que possa ser demitido! </h5></center>";
 }   
         
     ?>
@@ -191,7 +193,7 @@ if (mysqli_num_rows($result) > 0) {
     echo '</select>';
     echo ' <input type="submit" name="promover" value="Promover" class="mt-2 btn btn-lg btn-danger">';
 } else {
-    echo 'Nenhum resultado encontrado.';
+    echo "<center><h5 class='text-danger' > Não há funcionario que possa ser administrador! </h5></center>";
 }
     
     ?>
@@ -224,7 +226,7 @@ if (mysqli_num_rows($result) > 1) {
     echo '</select>';
     echo ' <input type="submit" name="rebaixar" value="Rebaixar" class="mt-2 btn btn-lg btn-danger">';
 } else {
-    echo 'Nenhum resultado encontrado.';
+    echo "<center><h5 class='text-danger' > Somente você é administrador! </h5></center>";
 }   
     
     ?>
@@ -264,7 +266,7 @@ if (mysqli_num_rows($result) > 0) {
     }
     echo '</table>';
 } else {
-    echo 'Nenhum resultado encontrado.';
+    echo "<center><h5 class='text-danger' > Não foi encontrado funcionario </h5></center>";;
 }   
     
     ?>
@@ -275,6 +277,7 @@ if (mysqli_num_rows($result) > 0) {
 </div>
 <?php
     // Buscar o usuário no banco de dados
+    /*
     $query = "SELECT * FROM status";
     $result = mysqli_query($conn, $query);
     $status = mysqli_fetch_assoc($result);
@@ -298,7 +301,7 @@ if (mysqli_num_rows($result) > 0) {
             echo "Erro ao alterar o endereço!";
 
         }
-    }
+    }*/
     ?>
       <!--
     <div class="col-md-10  mx-auto mt-3 col-lg-4 ">
